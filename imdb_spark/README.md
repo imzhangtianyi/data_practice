@@ -1,1 +1,2 @@
-# Sentiment analysis of IMDB reviews using PySpark
+# imdb_spark
+Sentiment analysis for the IMDB movie review data set using spark
