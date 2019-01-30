@@ -32,7 +32,29 @@ class Sorting:
                 k += 1
         return arr
 
+    def quick_sort(self, arr):
+        """
+        sort using pivot
+        :param arr: list[int]
+        :return: list
+        """
+        def pivot(arr, l, r):
+            val = arr[r]
+            i = l - 1
+            for j in range(l, r):
+                if arr[j] < val:
+                    i += 1
+                    arr[i], arr[j] = arr[j], arr[i]
+            arr[i+1], arr[r] = arr[r], arr[i+1]
+            return arr, i+1
+
+        if len(arr) > 1:
+            arr, p = pivot(arr, 0, len(arr)-1)
+            L = self.quick_sort(arr[:p])
+            R = self.quick_sort(arr[p+1:])
+            arr = L + [arr[p]] + R
+        return arr
 
 if __name__ == "__main__":
-    a = Sorting().merge_sort([1, 2, 3, 2, 1])
+    a = Sorting().quick_sort([1, 2, 7,100, 2,-1, 0.5, 3, 2, 1, 9,6,4,1])
     print(a)
