@@ -6,6 +6,9 @@ class TreeNode(object):
 
 
 class BST(object):
+    def __init__(self):
+        self.t = float('inf')
+
     def containsNearbyAlmostDuplicate(self, nums, k, t):
         """
         :type nums: List[int]
@@ -28,9 +31,11 @@ class BST(object):
         if not node:
             return None
         if node.val > val:
-            node.left = self._delete(node.left, val)
+            return
+            # node.left = self._delete(node.left, val)
         elif node.val < val:
-            node.right = self._delete(node.right, val)
+            return
+            # node.right = self._delete(node.right, val)
         else:
             if not node.right:
                 return node.left
@@ -44,7 +49,7 @@ class BST(object):
                 tmp_val = tmp_node.val
 
             node.val = tmp_val
-            node.right = self._delete(tmp_node.right, tmp_val)
+            node.right = self._delete(node.right, tmp_val)
             return node
 
     def _add(self, node, val):
@@ -67,5 +72,5 @@ class BST(object):
 
 
 if __name__ == "__main__":
-    ans = BST().containsNearbyAlmostDuplicate([1,5,9,1,5,9], 2, 3)
+    ans = BST().containsNearbyAlmostDuplicate([1,5,9,1,5,9], 2, 2)
     print(ans)
