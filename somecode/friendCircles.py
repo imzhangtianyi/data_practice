@@ -17,6 +17,25 @@ class DFS:
                 visited[j] = True
                 self.dfs(m, visited, j)
 
+class BFS:
+    def fun(self, m):
+        visited = [False] * len(m)
+        ans = 0
+
+        for i, friends in enumerate(m):
+            if visited[i]:
+                continue
+            ans += 1
+            stack = [i]
+            while stack:
+                j = stack.pop()
+                visited[j] = True
+                for k, val in enumerate(m[j]):
+                    if val and k != j and not visited[k]:
+                        stack.append(k)
+        return ans
+
+
 
 if __name__ == "__main__":
     M = [[1,1,0],

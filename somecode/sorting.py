@@ -1,3 +1,5 @@
+import heapq
+
 class Sorting:
     def merge_sort(self, arr):
         """
@@ -154,7 +156,22 @@ class Sorting:
             temp = self.min_heap(temp[1:], 0)
         return arr
 
+    def heap3_sort(self, arr):
+        heapq.heapify(arr)
+        h = []
+        for _ in range(len(arr)):
+            h.append(heapq.heappop(arr))
+        return h
+
+    def heap4_sort(self, arr):
+        heapq._heapify_max(arr)
+        h = []
+        for _ in range(len(arr)):
+            h.append(heapq._heappop_max(arr))
+        return h[::-1]
+
+
 
 if __name__ == "__main__":
-    a = Sorting().heap2_sort([1, 2, 7,10, 2,-1, 0.5, -3, 2, 1, 9,6,4,1, 32, 14, 0])
+    a = Sorting().m_sort([1, 2, 7,10, 2,-1, 0.5, -3, 2, 1, 9,6,4,1, 32, 14, 0])
     print(a)
