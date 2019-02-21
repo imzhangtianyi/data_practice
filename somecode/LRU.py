@@ -44,8 +44,8 @@ class LRUCache:
                 del self.dict[delete_node.key]
                 delete_node.prev.next = self.tail
                 self.tail.prev = delete_node.prev
-                delete_node.next = None
-                delete_node.next = None
+                # delete_node.next = None
+                # delete_node.next = None
             new_node = ListNode(key, val)
             self.dict[key] = new_node
             new_node.next = self.head.next
@@ -55,7 +55,7 @@ class LRUCache:
 
 
 if __name__ == "__main__":
-    cache = LRUcache(2)
+    cache = LRUCache(2)
     cache.put(1, 1)
     cache.put(2, 2)
     print(cache.get(1)) # returns 1
