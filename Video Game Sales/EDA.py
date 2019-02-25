@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 import missingno as msno
-sns.set(font_scale=1.5)
+sns.set(font_scale=1)
 sns.set_style("whitegrid")
 # sns.set_context("poster")
 sns.set_style(rc={
@@ -29,8 +29,8 @@ class Info:
     def __init__(self, filename: 'str'):
         self.df = pd.read_csv(filename)
 
-    def categories(self):
-        col = self.df.columns
+    def categories(self, ncolums: 'int' = 5):
+        col = self.df.columns[:ncolums]
         for i in col:
             print('\n' + i + ':')
             print(self.df[i].unique()[:5])
@@ -45,6 +45,12 @@ class Info:
         print(self.df_duplicate.shape)
 
     def missing(self, bar: 'bool' = False) -> 'None':
+        col = self.df.columns
+        for i in col:
+            mis = self.df[i].isnull()
+            if mis.any():
+                print('\n' + i + ':')
+                print(self.df[i].isnull().sum()/self.df.shape[0])
         if bar:
             msno.bar(self.df)
             plt.show()
@@ -61,23 +67,37 @@ class Visual:
     def set_size(self, m: 'int', n: 'int'):
         self.figsize = (m, n)
 
-    def annual_sale(self, sub: 'bool' =True):
+    def annual_sale(self, sub: 'bool' = True, avg: 'bool' = False):
         df = self.df
         regions = df.columns[6:]
         if sub:
             fig, ax = plt.subplots(2, 3, figsize=self.figsize)
 
             for reg, a in zip(regions, ax.ravel()):
-                sales = df.groupby('Year')[reg].sum()
+                if not avg:
+                    sales = df.groupby('Year')[reg].sum()
+                else:
+                    sales = df.groupby('Year')[reg].mean()
                 a.plot(sales)
                 a.set_title(reg)
+            fig.delaxes(ax.ravel()[-1])
         else:
             plt.figure(figsize=self.figsize)
             for reg in regions:
-                sales = df.groupby('Year')[reg].sum()
+                if not avg:
+                    sales = df.groupby('Year')[reg].sum()
+                else:
+                    sales = df.groupby('Year')[reg].mean()
                 plt.plot(sales, label=reg)
             plt.ylabel('Sales [million]')
             plt.legend()
+        plt.show()
+
+    def annual_games(self):
+        df = self.df
+        plt.figure(figsize=self.figsize)
+        bar = sns.countplot(df.Year)
+        bar.set_xticklabels(bar.get_xticklabels(), rotation=40, fontsize=10)
         plt.show()
 
     def avg_sale(self, category: 'column', top: 'int' = 10):
@@ -88,7 +108,19 @@ class Visual:
             sale = df.groupby(category)[reg].mean()
             sale = sale.sort_values(ascending=False)[:top]
             bar = sns.barplot(sale.index, sale, ax=a)
-            bar.
+            bar.set_xticklabels(sale.index, rotation=40, fontsize=10)
+            a.set_title(reg)
+        fig.delaxes(ax.ravel()[-1])
+        plt.show()
+
+    def hist(self, region: 'str', bins: 'int' = 30, log: 'bool' = False):
+        arr = self.df[region]
+        if not log:
+            sns.distplot(arr, bins=bins, hist_kws={'linewidth': 1})
+        else:
+            arr = np.log(arr)
+            sns.distplot(arr, bins=bins, hist_kws={'linewidth': 1})
+            plt.xlabel('Log ' + region)
         plt.show()
 
 
@@ -103,9 +135,12 @@ if __name__ == '__main__':
     # print(eda.df.Year.value_counts())
     # print(eda.df.Global_Sales.describe())
     # print(eda.df.Year.describe())
-    eda.categories()
+    # eda.categories()
     # print(df.head())
-    print(df.head())
+    # print(df.head())
     vs = Visual(df)
-    vs.avg_sale('Genre')
-    # vs.annual_sale(False)
+    # vs.avg_sale('Genre')
+    # vs.annual_sale(False, True)
+    # vs.annual_games()
+    # eda.missing()
+    vs.hist('Global_Sales', log=True)

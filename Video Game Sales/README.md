@@ -1,8 +1,4 @@
 # Video Game Sales
-## Please limit yourself to 4 hours time!
-### Place your submissions to the Submissions sub-folder with the naming convention: lastname_firstname.
-
-# Video Game Sales
 
 ## Goal
 
