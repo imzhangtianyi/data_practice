@@ -26,8 +26,8 @@ sns.set_style(rc={
 
 
 class Info:
-    def __init__(self, filename: 'str'):
-        self.df = pd.read_csv(filename)
+    def __init__(self, data):
+        self.df = data
 
     def categories(self, ncolums: 'int' = 5):
         col = self.df.columns[:ncolums]
@@ -103,7 +103,7 @@ class Visual:
     def avg_sale(self, category: 'column', top: 'int' = 10):
         df = self.df
         regions = df.columns[6:]
-        fig, ax = plt.subplots(2, 3, figsize=self.figsize)
+        fig, ax = plt.subplots(3, 2, figsize=self.figsize)
         for reg, a in zip(regions, ax.ravel()):
             sale = df.groupby(category)[reg].mean()
             sale = sale.sort_values(ascending=False)[:top]
@@ -118,10 +118,40 @@ class Visual:
         if not log:
             sns.distplot(arr, bins=bins, hist_kws={'linewidth': 1})
         else:
-            arr = np.log(arr)
+            arr = np.log(arr + 0.000001)
             sns.distplot(arr, bins=bins, hist_kws={'linewidth': 1})
             plt.xlabel('Log ' + region)
         plt.show()
+        print('No sales:')
+        print(sum(self.df[region] == 0) / self.df.shape[0])
+
+    def sale_rank(self, category: 'column', top: 'int' = 10, avg: 'bool' = True, width: 'float' = .8):
+        df = self.df
+        regions = df.columns[6:]
+        arr = []
+        if avg:
+            globe_sale = df.groupby(category)[regions[-1]].mean()
+        else:
+            globe_sale = df.groupby(category)[regions[-1]].sum()
+        globe_sale = globe_sale.sort_values(ascending=False)[:top]
+        sale = pd.DataFrame(globe_sale)
+
+        for reg in regions[:-1]:
+            if avg:
+                temp = df.groupby(category)[reg].mean()
+            else:
+                temp = df.groupby(category)[reg].sum()
+            sale = sale.join(temp)
+            # arr.append(sale)
+
+        # for i, sale in enumerate(arr):
+        #     sale.plot(kind='bar', position=i, label=regions[i],width=.16, alpha=0.8)
+        sale.drop(sale.columns[0], 1, inplace=True)
+        fig = sale.plot(kind='bar', width=width, alpha=1, figsize=self.figsize)
+        fig.set_xticklabels(sale.index, rotation=40, fontsize=10)
+        plt.legend()
+        plt.show()
+
 
 
 if __name__ == '__main__':
@@ -139,8 +169,11 @@ if __name__ == '__main__':
     # print(df.head())
     # print(df.head())
     vs = Visual(df)
+    sns.set_palette('Blues')
+    vs.sale_rank('Genre')
+    # vs.set_size(8, 12)
     # vs.avg_sale('Genre')
     # vs.annual_sale(False, True)
     # vs.annual_games()
     # eda.missing()
-    vs.hist('Global_Sales', log=True)
+    # vs.hist('Global_Sales', log=True)
