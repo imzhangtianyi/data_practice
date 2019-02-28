@@ -1,28 +1,35 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import train_test_split
 
 
 class NA:
     def __init__(self, data: 'DataFrame'):
         self.df = data
         self.df_drop = data
-        self.df_replace = data
+        self.df_replace = data.copy()
 
     def drop(self, category: 'str'):
+        """
+        Drop rows with NaN in a column
+        :param category: drop rows with NaN in this column
+        :return: DataFrame with drop rows
+        """
         df_drop = self.df.dropna(subset=[category])
         self.df_drop = self.df_drop.dropna(subset=[category])
         return df_drop
 
     def replace(self, category: 'str'):
+        """
+        Replace instead drop rows
+        :param category: Replace NaN with '_missing_' in this column
+        :return: DataFrame with replaced values
+        """
         self.df_replace.loc[self.df_replace[category].isnull(), [category]] = '_missing_'
         return self.df_replace
 
@@ -30,7 +37,7 @@ class NA:
 class Impute:
     def __init__(self, data: 'DataFrame'):
         self.df = data
-        self.df_impute = data
+        self.df_impute = data.copy()
         self.train = None
         self.predict = None
         self.xtr = None
@@ -39,8 +46,9 @@ class Impute:
         self.yimpute = None
 
     def set_train(self, y: 'str' = 'Year', col=['Platform', 'Genre']):
-        self.train = self.df.loc[self.df[y].notnull()]
-        self.predict = self.df.loc[self.df[y].isnull()]
+        df = self.df.copy()
+        self.train = df.loc[self.df[y].notnull()]
+        self.predict = df.loc[self.df[y].isnull()]
         self.xtr = self.train[col]
         self.ytr = self.train[y]
         self.ximpute = self.predict[col]
@@ -90,9 +98,23 @@ class Encode:
         self.encoder = None
 
     def one_hot(self, data):
+        """
+        One-hot encoding without intercept. Two or more features will generate a co-linear dependency.
+        """
         enc = OneHotEncoder(handle_unknown="ignore")
         enc.fit(data)
         self.encoder = enc
+
+    def ordinal(self, data):
+        """
+        Ordinal encoding. Does not work for multiple columns
+        """
+        enc = LabelEncoder()
+        enc.fit(data)
+        self.encoder = enc
+
+    def tfidf(self, data):
+        
 
 
 if __name__ == '__main__':
@@ -102,15 +124,13 @@ if __name__ == '__main__':
     # df1 = dn.drop('Year')
     df1 = dn.replace('Publisher')
     impute = Impute(df1)
-    impute.set_train(col=['Platform', 'Genre', 'Publisher'])
+    impute.set_train()
     # impute.train
     # print(impute.xtr.head().values)
     en = Encode()
-    en.one_hot(impute.xtr)
-    impute.xtr = en.encoder.transform(impute.xtr)
-    impute.ximpute = en.encoder.transform(impute.ximpute)
-    impute.nb()
-    impute.impute()
-    import EDA
-    EDA.Info(impute.df_impute).missing()
+    en.ordinal(impute.xtr)
+    print(impute.xtr.columns)
+    print(impute.xtr.Platform.unique().shape)
+    print(impute.xtr.Genre.unique().shape)
+    print(en.encoder.transform(impute.xtr.Genre).shape)
 
