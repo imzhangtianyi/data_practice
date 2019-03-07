@@ -153,7 +153,6 @@ class Visual:
         plt.show()
 
 
-
 if __name__ == '__main__':
     filename = "vgsales.csv"
     df = pd.read_csv(filename)
