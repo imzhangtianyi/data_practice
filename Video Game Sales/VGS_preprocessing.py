@@ -45,7 +45,7 @@ class Impute:
         self.ximpute = None
         self.yimpute = None
 
-    def set_train(self, y: 'str' = 'Year', col=['Platform', 'Genre']):
+    def set_train(self, y: 'str', col: 'List'):
         df = self.df.copy()
         self.train = df.loc[self.df[y].notnull()]
         self.predict = df.loc[self.df[y].isnull()]

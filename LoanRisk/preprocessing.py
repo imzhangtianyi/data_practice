@@ -3,9 +3,9 @@ from functools import reduce
 
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, ExtraTreesClassifier
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, Lasso
 from sklearn.model_selection import cross_val_score
 
 
@@ -33,14 +33,18 @@ class NA:
     def replace(self):
         """
         Replace instead drop rows
-        :param category: Replace NaN with '_missing_' in this column
+        :param category: Replace null with most common value
         :return: DataFrame with replaced values
         """
         columns = self.df.columns
+        df = self.df_replace
         for c in columns:
-            df = self.df[columns]
-        self.df_replace.loc[self.df_replace[category].isnull(), [category]] = '_missing_'
-        return self.df_replace
+            if df[c].dtype == 'O':
+                df.loc[self.df_replace[c].isnull(), [c]] = df[c].value_counts().index[0]
+            else:
+                df.loc[self.df_replace[c].isnull(), [c]] = df[c].median()
+        self.df_replace = df
+        return df
 
 
 class Merge:
@@ -80,6 +84,91 @@ class Encode:
                 enc = LabelEncoder()
                 data[c] = enc.fit_transform(data[c])
         return data
+
+class Impute:
+    def __init__(self, data: 'DataFrame'):
+        self.df = data
+        self.df_impute = data.copy()
+        self.train = None
+        self.predict = None
+        self.xtr = None
+        self.ytr = None
+        self.ximpute = None
+        self.yimpute = None
+
+    def set_train(self, y: 'str', col: 'List'):
+        df = self.df.copy()
+        self.train = df.loc[self.df[y].notnull()]
+        self.predict = df.loc[self.df[y].isnull()]
+        self.xtr = self.train[col]
+        self.ytr = self.train[y]
+        self.ximpute = self.predict[col]
+
+    def impute(self, y: 'str' = 'Year'):
+        self.df_impute.loc[self.df[y].isnull(), [y]] = self.yimpute
+
+    def knn(self, k: 'int' = 5):
+        model = KNeighborsClassifier(n_neighbors=k)
+        model.fit(self.xtr, self.ytr)
+        print("train accuracy:")
+        print(model.score(self.xtr, self.ytr))
+        print("cv accuracy:")
+        print(cross_val_score(model, self.xtr, self.ytr, cv=5))
+        self.yimpute = model.predict(self.ximpute)
+
+    def rf(self, max_depth=None, n=10):
+        model = RandomForestClassifier(max_depth=max_depth, n_estimators=n, n_jobs=-1)
+        model.fit(self.xtr, self.ytr)
+        print("train accuracy:")
+        print(model.score(self.xtr, self.ytr))
+        print("cv accuracy:")
+        print(cross_val_score(model, self.xtr, self.ytr, cv=5))
+        self.yimpute = model.predict(self.ximpute)
+
+    def et(self):
+        model = ExtraTreesClassifier()
+        model.fit(self.xtr, self.ytr)
+        print("train accuracy:")
+        print(model.score(self.xtr, self.ytr))
+        print("cv accuracy:")
+        print(cross_val_score(model, self.xtr, self.ytr, cv=5))
+        self.yimpute = model.predict(self.ximpute)
+
+    def rf_reg(self):
+        model = RandomForestRegressor()
+        model.fit(self.xtr, self.ytr)
+        print("train accuracy:")
+        print(model.score(self.xtr, self.ytr))
+        print("cv accuracy:")
+        print(cross_val_score(model, self.xtr, self.ytr, cv=5))
+        self.yimpute = model.predict(self.ximpute)
+
+    def nb(self):
+        model = MultinomialNB()
+        model.fit(self.xtr, self.ytr)
+        print("train accuracy:")
+        print(model.score(self.xtr, self.ytr))
+        print("cv accuracy:")
+        print(cross_val_score(model, self.xtr, self.ytr, cv=5))
+        self.yimpute = model.predict(self.ximpute)
+
+    def lr(self):
+        model = LogisticRegression()
+        model.fit(self.xtr, self.ytr)
+        print("train accuracy:")
+        print(model.score(self.xtr, self.ytr))
+        print("cv accuracy:")
+        print(cross_val_score(model, self.xtr, self.ytr, cv=5))
+        self.yimpute = model.predict(self.ximpute)
+
+    def lasso(self):
+        model = Lasso()
+        model.fit(self.xtr, self.ytr)
+        print("train accuracy:")
+        print(model.score(self.xtr, self.ytr))
+        print("cv accuracy:")
+        print(cross_val_score(model, self.xtr, self.ytr, cv=5))
+        self.yimpute = model.predict(self.ximpute)
 
 
 if __name__ == '__main__':

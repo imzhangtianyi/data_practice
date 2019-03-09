@@ -102,6 +102,7 @@ class Visual:
         Plot a histogram for a category
         """
         arr = self.df[category]
+        plt.figure(figsize=self.figsize)
         if not log:
             sns.distplot(arr, bins=bins, hist_kws={'linewidth': 1})
         else:
@@ -136,6 +137,7 @@ class Visual:
         df_x = pd.to_numeric(self.df[x], errors='coerce')
         df_y = self.df[y]
         classes = df_y.unique()
+        plt.figure(figsize=self.figsize)
         for c in classes:
             sns.distplot(df_x[df_y == c], bins=bins, label=c)
         plt.legend()
@@ -189,4 +191,5 @@ if __name__ == '__main__':
 
     df = pd.read_pickle('df_corr.pkl')
     vs = Visual(df)
-    vs.compare('SavingsAccountBalance','WasTheLoanApproved')
+    # vs.compare('SavingsAccountBalance','WasTheLoanApproved')
+    vs.dist('RequestedAmount', 'WasTheLoanApproved')
