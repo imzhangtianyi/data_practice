@@ -143,7 +143,7 @@ class Visual:
         plt.legend()
         plt.show()
 
-    def compare(self, x: 'str', y: 'str', width=.2):
+    def compare(self, x: 'str', y: 'str', width=.2, rotation=40, fontsize=12):
         """
         Compare percentage
         :param x: percentage to compare
@@ -165,7 +165,7 @@ class Visual:
             df = df.join(x)
 
         fig = df.plot(kind='bar', width=width, alpha=1, figsize=self.figsize)
-        fig.set_xticklabels(df.index, rotation=40, fontsize=10)
+        fig.set_xticklabels(df.index, rotation=rotation, fontsize=fontsize)
         plt.legend()
         plt.show()
 
