@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f25f3230-dac0-4270-99d2-049de3d572d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/VesselTimeSeries/EDA.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VesselTimeSeries/classification.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VesselTimeSeries/regression.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoanRisk/EDA.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanRisk/EDA.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoanRisk/Imputation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/LoanRisk/Imputation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoanRisk/Visualization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/LoanRisk/Visualization.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRisk/Untitled1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/LoanRisk/Untitled1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRisk/df.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRisk/df_corr.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRisk/ds-app.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRisk/ds-borrower.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRisk/ds-credit.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRisk/ds-result.tsv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LoanRisk/EDA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
-              <caret line="113" selection-start-line="113" selection-end-line="113" />
+            <state relative-caret-position="225">
+              <caret line="114" selection-start-line="114" selection-end-line="128" selection-end-column="18" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -27,11 +34,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VesselTimeSeries/EDA.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="119" selection-start-line="119" selection-end-line="119" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VesselTimeSeries/classification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="343">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LoanRisk/classification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
-              <caret line="77" column="34" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="34" />
+            <state relative-caret-position="118">
+              <caret line="57" column="10" lean-forward="true" selection-end-line="87" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -51,21 +82,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Video Game Sales/VGS_preprocessing.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/VesselTimeSeries/regression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="67" selection-start-line="67" selection-end-line="92" selection-end-column="50" />
+            <state relative-caret-position="-182">
+              <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Video Game Sales/VGS_classification.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -96,6 +122,9 @@
         <option value="$PROJECT_DIR$/LoanRisk/preprocessing.py" />
         <option value="$PROJECT_DIR$/LoanRisk/classification.py" />
         <option value="$PROJECT_DIR$/LoanRisk/EDA.py" />
+        <option value="$PROJECT_DIR$/VesselTimeSeries/EDA.py" />
+        <option value="$PROJECT_DIR$/VesselTimeSeries/classification.py" />
+        <option value="$PROJECT_DIR$/VesselTimeSeries/regression.py" />
       </list>
     </option>
   </component>
@@ -110,6 +139,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,27 +155,16 @@
             <path>
               <item name="data_practice" type="b2602c69:ProjectViewProjectNode" />
               <item name="data_practice" type="462c0819:PsiDirectoryNode" />
-              <item name="LoanRisk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_practice" type="462c0819:PsiDirectoryNode" />
-              <item name="somecode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data_practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data_practice" type="462c0819:PsiDirectoryNode" />
-              <item name="Video Game Sales" type="462c0819:PsiDirectoryNode" />
+              <item name="VesselTimeSeries" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/challenge-customer-data-science-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -155,6 +174,11 @@
         <option name="myModuleName" value="data_practice" />
       </console-settings>
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/VesselTimeSeries" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -168,8 +192,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.preprocessing">
-    <configuration name="EDA (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.regression">
+    <configuration name="EDA (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="data_practice" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -177,11 +201,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Video Game Sales" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/VesselTimeSeries" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Video Game Sales/EDA.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/VesselTimeSeries/EDA.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -203,27 +227,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LoanRisk/EDA.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="cheapestFlight" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="data_practice" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/somecode" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/somecode/cheapestFlight.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -274,13 +277,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="regression" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="data_practice" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/VesselTimeSeries" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/VesselTimeSeries/regression.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.regression" />
+        <item itemvalue="Python.EDA (2)" />
         <item itemvalue="Python.preprocessing" />
         <item itemvalue="Python.classification" />
         <item itemvalue="Python.EDA" />
-        <item itemvalue="Python.EDA (1)" />
-        <item itemvalue="Python.cheapestFlight" />
       </list>
     </recent_temporary>
   </component>
@@ -299,13 +323,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1533" height="875" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18807948" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3297587" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -424,16 +449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LoanRisk/preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2280">
-          <caret line="160" column="61" selection-start-line="160" selection-start-column="14" selection-end-line="160" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Video Game Sales/VGS_preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
@@ -447,10 +462,20 @@
     <entry file="file://$PROJECT_DIR$/Video Game Sales/VGS_classification.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/LoanRisk/preprocessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2280">
+          <caret line="160" column="61" selection-start-line="160" selection-start-column="14" selection-end-line="160" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LoanRisk/EDA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        <state relative-caret-position="225">
+          <caret line="114" selection-start-line="114" selection-end-line="128" selection-end-column="18" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -459,8 +484,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LoanRisk/classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="77" column="34" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="34" />
+        <state relative-caret-position="118">
+          <caret line="57" column="10" lean-forward="true" selection-end-line="87" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VesselTimeSeries/EDA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="119" selection-start-line="119" selection-end-line="119" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VesselTimeSeries/classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VesselTimeSeries/regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-182">
+          <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
