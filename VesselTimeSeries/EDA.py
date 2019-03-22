@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy.stats import pearsonr
 
 import missingno as msno
 sns.set(font_scale=1)
@@ -97,7 +98,7 @@ class Visual:
         plt.show()
         print(self.df[category].describe())
 
-    def correlation(self, vmax=1, vmin=-1, center=0, rotation=30, fontsize=10):
+    def correlation(self, vmax=1, vmin=-1, center=0, rotation=80, fontsize=10):
         """
         Plot the pearson correlation between each categories
         """
@@ -113,10 +114,55 @@ class Visual:
         corr.set_xticklabels(corr.get_xticklabels(), rotation=rotation, fontsize=fontsize)
         plt.show()
 
+    def corr_scatter(self):
+        """
+        A scatter plot to show correlations between features
+        """
+        df = self.df
 
+        sns.pairplot(df, markers='.')
+        plt.show()
+
+    def hist(self, category: 'str', bins: 'int' = 30, log: 'bool' = False):
+        """
+        Plot a histogram for a category
+        """
+        arr = self.df[category]
+        plt.figure(figsize=self.figsize)
+        if not log:
+            sns.distplot(arr, bins=bins, hist_kws={'linewidth': 1})
+        else:
+            arr = np.log(arr + 0.000001)
+            sns.distplot(arr, bins=bins, hist_kws={'linewidth': 1})
+            plt.xlabel('Log ' + category)
+        plt.tight_layout()
+        plt.show()
+        print(arr.describe())
+
+    def pair(self, x: 'str', y: 'str'):
+        """
+        Pair plot for two features
+        """
+        df = self.df
+        x = df[x]
+        y = df[y]
+
+        def r2(x, y):
+            return pearsonr(x, y)[0] ** 2
+
+        sns.jointplot(x, y, marker='.', kind="reg", stat_func=r2)
+        plt.show()
+
+    def scatter(self, x: 'str', y: 'str', hue=None):
+        df = self.df
+        plt.figure(figsize=self.figsize)
+        sns.scatterplot(df[x], df[y], hue=hue)
+        plt.show()
 
 
 if __name__ == '__main__':
     df = pd.read_csv('ship-data.csv')
     # Visual(df).plot('Main Engine Fuel Consumption (MT/day)')
-    Visual(df).correlation()
+    # Visual(df).hist(df.columns[1])
+    # Visual(df).corr_scatter()
+    Visual(df).pair('Main Engine Fuel Consumption (MT/day)', df.columns[8])
