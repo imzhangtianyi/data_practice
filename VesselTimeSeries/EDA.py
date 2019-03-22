@@ -139,7 +139,7 @@ class Visual:
         plt.show()
         print(arr.describe())
 
-    def pair(self, x: 'str', y: 'str'):
+    def pair(self, x: 'str', y: 'str', kind="reg"):
         """
         Pair plot for two features
         """
@@ -150,7 +150,7 @@ class Visual:
         def r2(x, y):
             return pearsonr(x, y)[0] ** 2
 
-        sns.jointplot(x, y, marker='.', kind="reg", stat_func=r2)
+        sns.jointplot(x, y, marker='.', kind=kind, stat_func=r2)
         plt.show()
 
     def scatter(self, x: 'str', y: 'str', hue=None):
